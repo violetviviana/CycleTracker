@@ -1,0 +1,139 @@
+<!DOCTYPE html> 
+<html> 
+<!-- The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only.  Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.
+ 
+THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
+ 
+ 
+Authors in chronological order of contribution:
+Viviana Martinez
+ 
+Further Information:
+http://cns.utexas.edu/fri 
+ 
+Research Educator:
+Timothy Riedel
+triedel@utexas.edu
+ 
+Brief Description of Goal of Code:
+The goal of this web app is to estimate the first day of a person's next menstrual cycle.
+ 
+Known Issues:
+None so far
+-->
+
+   <head> 
+      <title>Cycle Tracker</title>  
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+      <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+      <script>
+        var cycleLength = 28; //Initializes the variable, user will be able to change the value. Original value is 28 because that is the average.
+	      var menstrualLength = 5;  //Initializes the variable, user can change this value. This is an average.
+	      var daysSince = 0; //Initializes the variable, user determines this value for this to work.
+	      var daysLeft = 0; //Initializes the variable. Will be calculated.
+	      var mEnds = 0; //Initializes the variable. Will be calculated.
+      function cyclePlusOne(){ //Adds one day to the cycle. 
+	cycleLength = cycleLength + 1; 
+	}
+	function cycleMinusOne(){ //Subtracts one day to the cycle. 
+	cycleLength = cycleLength - 1; 
+	}
+	function menstrualPlusOne(){ //Adds one day to the menstruation period
+	menstrualLength = menstrualLength + 1; 
+	}
+		function menstrualMinusOne(){ //Subtracts one day to the menstruation period
+	menstrualLength = menstrualLength - 1;  
+	}
+	function estimate(){ //Here, the number of days until the next mentrual period is estimated.
+	daysLeft = cycleLength - daysSince; //Subtracts the number of days since the last cycle started from the number of days that the user's cycle generally lasts.
+	mEnds = daysLeft + menstrualLength' //Estimates the number of days until the menstrual period ends.
+	document.getElementById("results").innerHTML = daysLeft + " days until next menstruation starts. <br> mEnds + "days until you can feel normal again.";
+	} 
+      </script>
+   </head> 
+   
+   <body> 
+
+     <div data-role="page" id="pageone">
+     
+	<div data-role="header">
+		<h1>Cycle Tracker</h1> <!-- header and name -->
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>Hello! This simple web application can help you countdown the days until your next menstrual cycle and menstrual period's conclusion.
+		<br> The menstrual cycle is the period lasting around one month in which the female reproductive system releases hormones and prepares the body for pregnancy.
+		Menstruation itself is the period in which bleeding occurs, which happens at the beginning of the cycle. 
+		This means that the cycle is measured from the start of one bleeding period to the day before the next bleeding period.
+		<br> For more information, visit <a href="http://www.womenshealth.gov/publications/our-publications/fact-sheet/menstruation.html"> WomensHealth.gov</a> or 
+		<a href="http://www.girlshealth.gov/body/period/index.html"> GirlsHealth.gov</a> for more facts about menstruation.
+		</p>		
+	</div><!-- /content - explaining the application -->
+	<a href="#pagetwo"data-role="button">Click To Start</a> <!-- Takes the user ot the next page -->
+	<div data-role="footer" data-position="fixed">
+		<p> <b> Did you know? </b> 
+		<br>Everyone's cycles and periods are different, so coming up with a standard length or experience is quite complicated. 
+		This makes keeping track of your cycle important for your health, allowing you to discuss any changes or concerns with your doctor more effectively.</p>
+	</div><!-- Footers provide basic info -->
+	
+     </div>
+     </body>
+     </html>
+</head> <!-- Must end each page with / and body, html, and head before beginning next page -->
+
+   <body>
+     <div data-role="page"id="pagetwo">
+     	
+     	<div data-role="header">
+		<h1>Cycle Tracker Step 1: Cycle length</h1>
+	</div>
+  
+     	<div data-role="content">
+     		<p>Please enter the number of days over or under 28 that your previous cycle lasted.</p> <!-- 28 is the average -->
+     		<a href="#pagethree"onclick="avgCycle();"data-role="button">+-)</a> <!-- Keeps value at 28 -->
+     		<a href="#pagethree"onclick="cyclePlusOne();"data-role="button">+1</a> <!-- Adds a day to the cycle period -->
+     		<a href="#pagethree"onclick="cyclePlusTwo();"data-role="button">+2</a> <!-- Adds 2 days to the cycle period -->
+     		<a href="#pagethree"onclick="cycleMinusOne();"data-role="button">-1</a> <!-- Subracts a day to the cycle period -->
+     		<a href="#pagethree"onclick="cycleMinusTwo();"data-role="button">-2</a> <!-- Subracts 2 days to the cycle period -->
+     	</div>
+     </div>
+     
+   </body>
+</html>
+</head>
+
+ <body>
+     <div data-role="page"id="pagethree">
+     
+     <div data-role="header">
+		<h1>Cycle Tracker Step 2: Period Length</h1>
+	</div><!-- /header -->
+  
+  	<div data-role="content">
+    		<p>Please enter how long your last period lasted in terms of 5 days</p> <!-- 5 is the average -->
+     		<a href="#pagefour"onclick="menstrualPlusOne();"data-role="button">+1</a>
+     		<a href="#pagefour"onclick="menstrualMinusOne();"data-role="button">-1</a>
+     	</div>
+     </div>
+     
+   </body>
+</html>
+</head>
+
+<body>
+	
+	<div data-role="page"id="results"> 
+	
+		<div data-role="content">
+			<a href="#results"onclick="estimate();"data-role="button">Thank you, click to see your estimations!</a>
+			<p id="results"></p>
+			<p>Ask your doctor about any concerns or questions you may have about your menstrual experience for best results.</p>
+		</div>	
+		
+	</div>
+	
+</body>
+</html>
